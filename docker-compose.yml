@@ -9,23 +9,23 @@ services:
       - 443:443
     volumes:
       - /fblx/nginx/conf:/etc/nginx
-      - /fblx/nginx/certs:/etc/ssl/private
+      - /fblx/nginx/cert:/etc/ssl/private
 
   authentication:
     build: ./authSrv
-    container_name: authSrv 
-    hostname: authSrv 
+    container_name: authSrv
+    hostname: authSrv.test 
     ports: 
-      - 7000:7000
+      - "7000"
     volumes:
       - /fblx/authSrv:/usr/src/app
 
   api:
     build: ./mockApi
     container_name: api
-    hostname: mockApi
+    hostname: mockApi.test
     ports: 
-      - 8000:8000
+      - "8000"
     volumes:
       - /fblx/mockApi:/usr/src/app
 
