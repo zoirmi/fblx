@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  proxy:
+    container_name: nginx
+    hostname: fb-proxy.test
+    image: nginx
+    ports:
+      - 443:443
+    volumes:
+      - /fblx/nginx/conf:/etc/nginx
+      - /fblx/nginx/certs:/etc/ssl/private
+
+  authentication:
+    build: ./authSrv
+    container_name: authSrv 
+    hostname: authSrv 
+    ports: 
+      - 7000:7000
+    volumes:
+      - /fblx/authSrv:/usr/src/app
+
+  api:
+    build: ./mockApi
+    container_name: api
+    hostname: mockApi
+    ports: 
+      - 8000:8000
+    volumes:
+      - /fblx/mockApi:/usr/src/app
+
+    #elastic service:
+    #parser service:
+    #redis service:
