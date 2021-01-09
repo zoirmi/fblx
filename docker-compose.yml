@@ -29,6 +29,15 @@ services:
     volumes:
       - /fblx/mockApi:/usr/src/app
 
+  redis:
+     build: ./redis
+     container_name: redis
+     hostname: redis.test
+     command: ./redis-server /redis_data/redis.conf
+     ports:
+       - "6379"
+     volumes:
+       - /fblx/redis/data:/redis_data
+
     #elastic service:
     #parser service:
-    #redis service:
